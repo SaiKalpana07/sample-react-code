@@ -1,17 +1,21 @@
-import React, { createRef, useRef } from "react";
+import React, { createRef, useEffect, useRef } from "react";
 import LogIn from "./components/LogIn";
 
 function App() {
-  const inputRef = useRef(0);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.value = "0"
+  },[])
 
   const handleClick = () => {
-    console.log(inputRef, "count");
+    inputRef.current.value++
   };
 
   return (
     <div>
       <h2>Counter using ref..</h2>
-      <input type="text" defaultValue={inputRef.current} />
+      <input type="text" ref={inputRef} />
       <button onClick={handleClick}>Click here</button>
       <LogIn />
     </div>
